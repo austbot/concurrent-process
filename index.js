@@ -4,7 +4,7 @@ const http = require('http');
 const cp = require("child_process");
 
 function runApp(appPath, output) {
-  let proc = cp.fork('apps/countVowels.js');
+  let proc = cp.fork(appPath);
   proc.on('message', output);
   return proc;
 };
