@@ -14,5 +14,5 @@ process.on('message', function (data) {
   setTimeout(function () {
     process.send(countVowels(data));
     process.exit();
-  }, 1000)
+  }, 100); //Just to prove its async :)
 });

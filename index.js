@@ -17,6 +17,7 @@ process.on('exit', () => {
   server.kill();
   console.log('Shutting Down...')
 });
+
 //Make sure our http server is ready.
 server.on('message', function (msg) {
 
@@ -36,10 +37,17 @@ server.on('message', function (msg) {
       console.log(`Word Received: ${word}`);
       //Run sub apps
       //Make a new vowel process that disposes once the work is done. Log Out put of async function.
-      let vowel = runApp('apps/countVowels,js', (count) => console.log(`Vowel Count for ${word} ${count}`));
+      let vowel = runApp('apps/countVowels.js', (count) => console.log(`Vowel Count for ${word} ${count}`));
       vowel.send(word);
       //Make a new definition process that disposes once the work is done.
-      //TODO definitions
+      let def = runApp('apps/definition.js', ({error, definition}) => {
+        if(error){
+          console.log(`Could not get definition of ${word}`);
+        }else{
+          console.log(`Definition of ${word} ${definition}`);
+        }
+      });
+      def.send(word);
     });
     //If the server ever ends the connection
     res.on('end', () => {
