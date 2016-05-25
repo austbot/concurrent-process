@@ -3,11 +3,6 @@ var promise = require('es6-promise');
 var https = require('https');
 var R = require('ramda');
 
-//Safe head
-R.head = R.curry(function (a) {
-  let n = R.nth(0);
-  return R.isNil(n) ? [] : n;
-});
 const firstMeaning = R.lensPath(['tuc','0','meanings','0','text']);
 
 function getDefinition(word) {
