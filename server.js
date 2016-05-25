@@ -17,7 +17,7 @@ server.route({
           stream.write(JSON.stringify({message: word}));
         });
       });
-    }, 1000);
+    }, 500);
     reply(stream);
   }
 });

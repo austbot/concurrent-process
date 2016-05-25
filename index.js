@@ -34,17 +34,17 @@ server.on('message', function (msg) {
     res.on('data', (chunk) => {
       let word = JSON.parse(chunk).message;
       //Log That we recieved a word
-      console.log(`Word Received: ${word}`);
+      console.log(`Word Received: ${word}\n\n`);
       //Run sub apps
       //Make a new vowel process that disposes once the work is done. Log Out put of async function.
-      let vowel = runApp('apps/countVowels.js', (count) => console.log(`Vowel Count for ${word} ${count}`));
+      let vowel = runApp('apps/countVowels.js', (count) => console.log(`Vowel Count for ${word} ${count}\n\n`));
       vowel.send(word);
       //Make a new definition process that disposes once the work is done.
       let def = runApp('apps/definition.js', ({error, definition}) => {
         if(error){
-          console.log(`Could not get definition of ${word}`);
+          console.log(`Could not get definition of ${word}\n\n`);
         }else{
-          console.log(`Definition of ${word} ${definition}`);
+          console.log(`Definition of ${word} ${definition}\n\n`);
         }
       });
       def.send(word);
