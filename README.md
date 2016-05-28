@@ -6,3 +6,4 @@ To demonstrate my understanding of node.js, particularly concurrent node I creat
 ## Running
 To run the app just make sure to get node `6.2.0` and run `npm install` and then `node index.js`.
 
+Its just for fun!
